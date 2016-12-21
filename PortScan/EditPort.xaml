@@ -1,0 +1,28 @@
+﻿<Window x:Class="PortScan.EditPort"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+            
+             Title="编辑端口" Width="338.504" Height="354.784" ManipulationStarting="Window_ManipulationStarting">
+    <Grid>
+        <ListView Name="relList" HorizontalAlignment="Left" Height="327" Margin="0,0,0,0" VerticalAlignment="Top" Width="172" RenderTransformOrigin="-0.49,-0.183" SelectionChanged="ListView_SelectionChanged">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="端口" Width="172" ></GridViewColumn>
+
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button Name="addBtn" Content="增加端口" HorizontalAlignment="Left" Margin="216,96,0,0" VerticalAlignment="Top" Width="75" Click="addBtn_Click"/>
+        <Button Name="delBtn" Content="删除端口" HorizontalAlignment="Left" Margin="216,140,0,0" VerticalAlignment="Top" Width="75" Click="delBtn_Click"/>
+        <Button Name="confirmBtn" Content="确认修改" HorizontalAlignment="Left" Margin="216,196,0,0" VerticalAlignment="Top" Width="75" Click="confirmBtn_Click"/>
+        <TextBox Name="addPort" HorizontalAlignment="Left" Height="23" Margin="216,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="75"/>
+
+
+    </Grid>
+
+
+</Window>
+
