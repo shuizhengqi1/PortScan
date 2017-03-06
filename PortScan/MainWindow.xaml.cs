@@ -198,9 +198,11 @@ namespace PortScan
                         {
                             if (Convert.ToInt32(lines[i]) >= 255)
                             {
-                                IPCheckLabel.Content = "输入ip地址不合法，请重新输入";
-                                IPCheckLabel.Background = new SolidColorBrush(Colors.Red);
-                                check = false;
+                                ConfirmBtn.IsEnabled = true;
+                                IPCheckLabel.Content = "输入ip地址合法";
+                                flagOfdomain = true;
+                                IPCheckLabel.Background = new SolidColorBrush(Colors.Green);
+                                check = true;
                             }
                             else
                             {
@@ -214,31 +216,48 @@ namespace PortScan
                         }
                         else
                         {
+                            Regex regex1 = new Regex(@"^[a-zA-Z0-9]");
+                            if (regex1.IsMatch(lines[i]))
+                            {
+                                ConfirmBtn.IsEnabled = true;
+                                IPCheckLabel.Content = "输入ip地址合法";
+                                flagOfdomain = true;
+                                IPCheckLabel.Background = new SolidColorBrush(Colors.Green);
+                                check = true;
+                            }
+                            else
+                            {
+                                ConfirmBtn.IsEnabled = false;
+                                IPCheckLabel.Content = "输入ip地址含有非法字符，请检查";
+                                flagOfdomain = false;
+                                IPCheckLabel.Background = new SolidColorBrush(Colors.Yellow);
+                                check = false;
+                            }
+                            
+                        }
+                    }
+                }
+                else
+                {
+                    Regex regex = new Regex(@"^[a-zA-z0-9]*$");
+                    for (int i = 0; i < lines.Count(); i++)
+                    {
+                        if (regex.IsMatch(lines[i]))
+                        {
+                            ConfirmBtn.IsEnabled = true;
+                            IPCheckLabel.Content = "输入ip地址合法";
+                            flagOfdomain = true;
+                            IPCheckLabel.Background = new SolidColorBrush(Colors.Green);
+                            check = true;
+                        }
+                        else
+                        {
                             ConfirmBtn.IsEnabled = false;
                             IPCheckLabel.Content = "输入ip地址不合法，请重新输入";
                             IPCheckLabel.Background = new SolidColorBrush(Colors.Red);
                             check = false;
                         }
                     }
-                }
-                else
-                {
-                    if (lines.Count().Equals(3) || lines.Count().Equals(2))
-                    {
-                        ConfirmBtn.IsEnabled = true;
-                        IPCheckLabel.Content = "输入ip地址合法";
-                        flagOfdomain = true;
-                        IPCheckLabel.Background = new SolidColorBrush(Colors.Green);
-                        check = true;
-                    }
-                    else
-                    {
-                        ConfirmBtn.IsEnabled = false;
-                        IPCheckLabel.Content = "输入ip地址不合法，请重新输入";
-                        IPCheckLabel.Background = new SolidColorBrush(Colors.Red);
-                        check = false;
-                    }
-                    
                 }
             }
             return check;
